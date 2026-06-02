@@ -11,7 +11,6 @@ data/TSB-AD/Datasets/File_List/TSB-AD-U-Eva.csv
 ## TSB-AD-U Eva
 
 ```bash
-cd code
 ./reproduce.sh validate_data
 ```
 

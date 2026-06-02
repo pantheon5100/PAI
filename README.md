@@ -24,7 +24,7 @@ Representation-based time-series anomaly detection algorithms significantly outp
 1. Create the environment.
 
    ```bash
-   conda env create -f code/env.yaml
+   conda env create -f env.yaml
    conda activate tsbad
    ```
 
@@ -43,10 +43,11 @@ Representation-based time-series anomaly detection algorithms significantly outp
                └── TSB-AD-U-Eva.csv
    ```
 
+   No path configuration is needed with this layout.
+
 3. Optionally validate the raw TSB-AD-U Eva files.
 
    ```bash
-   cd code
    ./reproduce.sh validate_data
    ```
 
@@ -55,7 +56,6 @@ Representation-based time-series anomaly detection algorithms significantly outp
    To run every model and write the anomaly-score files needed for metric calculation, run:
 
    ```bash
-   cd code
    ./reproduce.sh generate_anomaly_scores
    ```
 
@@ -64,20 +64,18 @@ Representation-based time-series anomaly detection algorithms significantly outp
    For a one-file smoke test before the full run:
 
    ```bash
-   cd code
    source setup_env.sh
    python runners/run_ts2vec_eva.py \
-     --score_dir "$PAIAD_SCORE_ROOT/TS2Vec" \
+     --score_dir outputs/score/TS2Vec \
      --log_path /tmp/paiad_ts2vec_smoke.log \
      --n_iters 1 --start 0 --end 1
    ```
 
-   For full runs, shard the file list using `--start` and `--end`. The complete method map is documented in `code/runners/README.md`.
+   For full runs, shard the file list using `--start` and `--end`. The complete method map is documented in `runners/README.md`.
 
 5. Calculate metrics to reproduce the tables.
 
    ```bash
-   cd code
    ./reproduce.sh main_table
    ./reproduce.sh ablation_table
    ```
@@ -86,23 +84,15 @@ Representation-based time-series anomaly detection algorithms significantly outp
 
    ```text
    outputs/aggregates/eva350/pool_means_main_table.csv
-   outputs/aggregates/weight_ablation/FULL_COMPARISON_TABLE.md
-
+   outputs/FULL_COMPARISON_TABLE.md
    ```
 
    ```text
-   $PAIAD_ABLATION_ROOT/sweep_eva350_all.csv
-   $PAIAD_OUTPUT_ROOT/WEIGHT_ABLATION_TABLE.md
+   outputs/aggregates/weight_ablation/sweep_eva350_all.csv
+   outputs/WEIGHT_ABLATION_TABLE.md
    ```
 
-   To improve efficiency, we recommend using the following thread settings.
-
-   `code/reproduce.sh` sets conservative BLAS thread caps by default for stable multi-process metric evaluation:
-
-   ```bash
-   OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 \
-   NUMEXPR_NUM_THREADS=2 BLIS_NUM_THREADS=2 ./reproduce.sh main_table
-   ```
+   `reproduce.sh` already uses conservative threading defaults for stable metric calculation.
 
 ## 📊 Reproduce Tables
 
@@ -125,7 +115,7 @@ The reproduced main results are:
 - The default raw series directory is `data/TSB-AD-U/TSB-AD-U/`.
 - Each series is read as `data/TSB-AD-U/TSB-AD-U/<file_name>.csv`.
 - The final column must be named `Label`.
-- Model prediction anomaly scores are stored as `.npy` or `.npz` files under `PAIAD_SCORE_ROOT`.
+- Model prediction anomaly scores are stored as `.npy` or `.npz` files under `outputs/score/` by default.
 - Aggregators accept either full-series or test-only score arrays and align labels automatically.
 
 ## 🙏 Acknowledgements

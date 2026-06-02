@@ -3,17 +3,12 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+REPO_DIR="$SCRIPT_DIR"
 
 if [ -f "$REPO_DIR/configs/paths.local.env" ]; then
   set -a
   # shellcheck disable=SC1091
   source "$REPO_DIR/configs/paths.local.env"
-  set +a
-elif [ -f "$SCRIPT_DIR/../configs/paths.local.env" ]; then
-  set -a
-  # shellcheck disable=SC1091
-  source "$SCRIPT_DIR/../configs/paths.local.env"
   set +a
 fi
 
@@ -54,7 +49,7 @@ if [ -z "${PAIAD_TSB_U_EVA_CSV:-}" ]; then
   done
   export PAIAD_TSB_U_EVA_CSV="${PAIAD_TSB_U_EVA_CSV:-$REPO_DIR/data/TSB-AD/Datasets/File_List/TSB-AD-U-Eva.csv}"
 fi
-export PYTHONPATH="$REPO_DIR/code:$REPO_DIR/third_party/TSB-AD:$REPO_DIR/third_party/ts2vec:$REPO_DIR/third_party/KDD2023-DCdetector:${PYTHONPATH:-}"
+export PYTHONPATH="$REPO_DIR:$REPO_DIR/third_party/TSB-AD:$REPO_DIR/third_party/ts2vec:$REPO_DIR/third_party/KDD2023-DCdetector:${PYTHONPATH:-}"
 
 usage() {
   cat <<EOF

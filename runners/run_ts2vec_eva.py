@@ -27,7 +27,7 @@ from pai_paths import tsbad_dataset_dir, tsbad_eva_csv
 # Repo paths
 TS2VEC_REPO = os.environ.get(
     "PAIAD_TS2VEC_REPO",
-    str(Path(__file__).resolve().parents[2] / "third_party" / "ts2vec"),
+    str(Path(__file__).resolve().parents[1] / "third_party" / "ts2vec"),
 )
 sys.path.insert(0, TS2VEC_REPO)
 

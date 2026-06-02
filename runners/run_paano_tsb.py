@@ -35,7 +35,7 @@ VARIANT_CONFIG = {
 
 
 def default_paano_repo() -> Path:
-    return Path(__file__).resolve().parents[2] / "third_party" / "PaAno"
+    return Path(__file__).resolve().parents[1] / "third_party" / "PaAno"
 
 
 def read_file_names(file_list: Path, start: int, end: int) -> list[str]:

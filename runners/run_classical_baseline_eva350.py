@@ -32,7 +32,7 @@ except ImportError:
 
 TSB_AD_REPO = os.environ.get(
     "PAIAD_TSB_AD_REPO",
-    str(Path(__file__).resolve().parents[2] / "third_party" / "TSB-AD"),
+    str(Path(__file__).resolve().parents[1] / "third_party" / "TSB-AD"),
 )
 sys.path.insert(0, TSB_AD_REPO)
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))

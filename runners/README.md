@@ -15,7 +15,6 @@ Use `--start` and `--end` to run a one-file smoke test or shard the 350 files.
 To run every model sequentially and write all anomaly-score files, use:
 
 ```bash
-cd code
 ./reproduce.sh generate_anomaly_scores
 ```
 
@@ -35,7 +34,6 @@ choose to report that extra baseline.
 ## Smoke Commands
 
 ```bash
-cd code
 source setup_env.sh
 
 # TS2Vec

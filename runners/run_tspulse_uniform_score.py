@@ -252,6 +252,7 @@ def main():
     ap.add_argument('--score_dir', required=True)
     ap.add_argument('--log_path', required=True)
     ap.add_argument('--seed', type=int, default=2024)
+    ap.add_argument('--model_name_or_path', default=os.environ.get('PAIAD_TSPULSE_MODEL', 'ibm-granite/granite-timeseries-tspulse-r1'))
     ap.add_argument('--start', type=int, default=0)
     ap.add_argument('--end', type=int, default=-1)
     args = ap.parse_args()
@@ -265,7 +266,7 @@ def main():
     # Load TSPulse model once (ZS, no per-fid finetune)
     print("[tspulse_uniform] loading model...")
     from tsfm_public.models.tspulse.modeling_tspulse import TSPulseForReconstruction
-    model = TSPulseForReconstruction.from_pretrained("ibm-granite/granite-timeseries-tspulse-r1")
+    model = TSPulseForReconstruction.from_pretrained(args.model_name_or_path)
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = model.to(device)
     print(f"[tspulse_uniform] model loaded on {device}, d_model={model.config.d_model}, patch_length={model.config.patch_length}")

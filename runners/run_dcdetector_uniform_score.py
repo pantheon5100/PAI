@@ -37,7 +37,7 @@ from sklearn.cluster import MiniBatchKMeans
 
 DCDETECTOR_REPO = os.environ.get(
     "PAIAD_DCDETECTOR_REPO",
-    str(Path(__file__).resolve().parents[2] / "third_party" / "KDD2023-DCdetector"),
+    str(Path(__file__).resolve().parents[1] / "third_party" / "KDD2023-DCdetector"),
 )
 sys.path.insert(0, DCDETECTOR_REPO)
 

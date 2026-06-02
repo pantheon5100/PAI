@@ -36,7 +36,7 @@ from pai_paths import tsbad_dataset_dir, tsbad_eva_csv
 
 TSB_AD_REPO = os.environ.get(
     "PAIAD_TSB_AD_REPO",
-    str(Path(__file__).resolve().parents[2] / "third_party" / "TSB-AD"),
+    str(Path(__file__).resolve().parents[1] / "third_party" / "TSB-AD"),
 )
 sys.path.insert(0, TSB_AD_REPO)
 
@@ -93,7 +93,7 @@ def main():
     parser.add_argument("--tuning_results", type=str,
                         default=os.environ.get(
                             "PAIAD_TSPULSE_TUNING",
-                            str(Path(__file__).resolve().parents[2] / "third_party" / "TSB-AD" / "benchmark_exp" / "benchmark_tuning_results" / "tsb_ad_u_tuning_TSPulse.csv"),
+                            str(Path(__file__).resolve().parents[1] / "third_party" / "TSB-AD" / "benchmark_exp" / "benchmark_tuning_results" / "tsb_ad_u_tuning_TSPulse.csv"),
                         ))
     parser.add_argument("--start", type=int, default=0)
     parser.add_argument("--end", type=int, default=-1)
