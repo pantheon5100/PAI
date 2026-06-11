@@ -18,6 +18,7 @@
 
 Representation-based time-series anomaly detection algorithms significantly outperform alternative methods on diverse anomaly detection tasks. However, we find that they suffer from a major limitation: **their learned embeddings are often amplitude-agnostic**. Losing amplitude information can degrade performance on amplitude-related anomalies, and this failure is prevalent across existing representation-based methods. To address this issue, we propose a new anomaly scoring scheme named PAI. PAI consists of two complementary modules: a diagnostic module and a final score augmentation function. The diagnostic module compares cosine and Euclidean scoring on the same representation bank to test whether amplitude information is already captured in the learned representation. PAI then computes a pointwise median/MAD deviation score and a local mean-shift score, which are fused with the representation score to produce the final anomaly score. On TSB-AD-U-Eva and TAB UV, PAI improves all four evaluated representation-based methods on every reported metric, with average VUS-PR gains from +0.048 to +0.293. Among all evaluated combinations, PaAno + PAI yields the best VUS-PR at 0.584. Further evaluation with bootstrap confidence intervals, anomaly-type breakdowns, and a TS2Vec input-normalization ablation supports the proposed scheme. These results suggest that explicitly retaining amplitude information is important for representation-based time-series anomaly detection.
 
+paper: https://arxiv.org/abs/2606.08935
 
 ## 🚀 Quick Start
 
